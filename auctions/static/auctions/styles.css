@@ -1,5 +1,17 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1, h2 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
 body {
-    padding: 10px;
+    padding: 20px;
 }
 
 #new_listing_title {
@@ -25,3 +37,73 @@ body {
 #new_listing_form #submit_btn {
     max-width: 200px;
 }
+
+/* Active Listings Page */
+
+#active_listings {
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+#active_listings .listing {
+    border: 1px solid rgba(0,0,0,0.3);
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 20px;
+
+    max-width: 700px;
+}
+
+.listing .image-box {
+    max-width: 700px;
+
+    /* border: 1px solid blue; */
+
+    display: flex;
+}
+
+.listing .image-box img {
+    flex: 1;
+    width: 200px;
+}
+
+.listing .info .top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.top .byuser {
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.top .price {
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+    font-size: 1.5em;
+}
+
+.info .title {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.info .dsc {
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+
+
