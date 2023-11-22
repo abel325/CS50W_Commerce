@@ -14,7 +14,10 @@ from .models import User, AuctionCategory, AuctionListing
 
 
 def index(request):
-    return render(request, "auctions/index.html")
+    active_listings = AuctionListing.objects.all()
+    return render(request, "auctions/index.html", {
+        'active_listings': active_listings,
+    })
 
 
 def login_view(request):
@@ -91,9 +94,6 @@ def new_listing(request):
 
             listing.save()    
         else:
-            # print('Errors below -------------------->')
-            # print(form.errors)
-            # print('<------------------- Errors Above')
             return render(request, 'auctions/new_listing.html', {
                 'form': form,
             })
