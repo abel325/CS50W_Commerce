@@ -1,0 +1,30 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>My Listings</h2>    
+
+    <ul id="won-listings">
+        {% for listing in user.won_listings.all %}
+            <li class="listing">
+                
+                <a href="{% url 'listing_page' listing.id %}">
+                    <div class="image-box">
+                        <img src="{{ listing.image.url }}" alt="{{ listing.title }}">
+                    </div>
+                </a>
+
+                <div class="info">
+                    <div class="top">
+                        <div class="byuser"><strong>by</strong> {{ listing.user.username }}</div>
+                        <div class="price"><strong></strong> ${{ listing.bid }} </div>
+                    </div>
+                    <div class="title">{{ listing.title }}</div>
+                    <div class="dsc">{{ listing.description }}</div>
+                    <!-- <a href="{% url 'listing_page' listing.id %}" class="go-to-listing">Go to listing</a> -->
+                </div>
+
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
