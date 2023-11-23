@@ -11,11 +11,14 @@ class User(AbstractUser):
 
 class AuctionListing(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_listings")
+    w_users = models.ManyToManyField(User, blank=True, related_name="watchlist")
     title = models.CharField(max_length=128)
     description = models.TextField(null=True)
     image = models.ImageField(upload_to='pics', null=True)
     category = models.ForeignKey('AuctionCategory', on_delete=models.SET_NULL, null=True, related_name="ac_listings")
     bid = models.FloatField()
+    active = models.BooleanField(default=True)
+    winner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="won_listings")
 
     def __str__(self):
         return f"{self.id}: {self.title} posted by {self.user.username}"
