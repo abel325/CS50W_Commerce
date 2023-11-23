@@ -45,7 +45,6 @@ class NewListingForm(forms.Form):
 
 
 
-    
+class WForm(forms.Form):
+    pass
 
-
-    
