@@ -3,12 +3,11 @@
 {% block body %}
     <h2>Active Listings</h2>
 
-    <ul id="active_listings">
+    <ul id="active-listings">
         {% for listing in active_listings %}
-            <!-- <li class="listing">{{ listing.title }} <strong>by</strong> {{ listing.user.username }}</li> -->
             <li class="listing">
                 
-                <a href="">
+                <a href="{% url 'listing_page' listing.id %}">
                     <div class="image-box">
                         <img src="{{ listing.image.url }}" alt="{{ listing.title }}">
                     </div>
@@ -21,6 +20,7 @@
                     </div>
                     <div class="title">{{ listing.title }}</div>
                     <div class="dsc">{{ listing.description }}</div>
+                    <!-- <a href="{% url 'listing_page' listing.id %}" class="go-to-listing">Go to listing</a> -->
                 </div>
 
             </li>
