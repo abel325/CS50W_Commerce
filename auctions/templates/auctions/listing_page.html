@@ -1,0 +1,70 @@
+{% extends "auctions/layout.html" %}
+
+{% block title %} {{ listing.title }} {% endblock %}
+
+{% block body %}
+    {% if listing.active or user == listing.user %}
+    <h1>Hello there!</h1>
+
+    <div id="listing-page">
+
+        <div id="listing">
+            <div id="image-box">
+                <img src="{{ listing.image.url }}" alt="{{ listing.title }}">
+            </div>
+            <div id="info">
+                {% if user.is_authenticated %}
+                    {% if user in listing.w_users.all %}
+                        <form action="{% url 'remove_from_watchlist' listing.id %}" id="w-form" method="post">
+                            {% csrf_token %}
+                            <input type="submit" value="Remove from Watchlist" id="w-btn">
+                        </form>
+                    {% else %}
+                        <form action="{% url 'add_to_watchlist' listing.id %}" id="w-form" method="post">
+                            {% csrf_token %}
+                            <input type="submit" value="Add to Watchlist" id="w-btn">
+                        </form>
+                    {% endif %}
+                {% endif %}
+                <div id="top-side">
+                    <div id="byuser"><strong>by</strong> {{ listing.user.username }}</div>
+                    <div id="price"><strong></strong> ${{ listing.bid }} </div>
+                </div>
+                <div id="title">{{ listing.title }}</div>
+                {% if user.is_authenticated and listing.user != user %}
+                    <form action="{% url 'bid' listing.id %}" id="place-bid-form" method="post">
+                        {% csrf_token %}
+                        <label for="bid">
+                            {% if message %}
+                                {{ message }}
+                            {% else %}
+                                Your bid is the current bid: 
+                            {% endif %}
+                        </label>
+                        <input type="number" name="bid" id="bid">
+                        <input type="submit" value="Place Bid" id="submit-bid-btn">
+                    </form>
+                {% endif %}
+                <div id="dsc">{{ listing.description }}</div>
+                {% if user == listing.user and listing.active %}
+                    <form action="{% url 'close_listing' listing.id %}" method="post" id="close-listing-form">
+                        {% csrf_token %}
+                        <input type="submit" value="Close Auction" id="close-listing-btn">
+                    </form>
+                {% elif not listing.active %}
+                    <div id="closed">Closed</div>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+    {% elif user == listing.winner %}
+        <h1>You won!</h1>
+        <h2>Congratulations!</h2>
+        <h3>You won the auction for {{ listing.title }}!</h3>
+        <h3>You can contact the seller at {{ listing.user.email }}</h3>
+    {% else %}
+        <h1>This listing is closed</h1>
+    {% endif %}
+
+{% endblock %}
