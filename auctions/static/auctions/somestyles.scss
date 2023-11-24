@@ -1,0 +1,125 @@
+$primary-font: Verdana, Geneva, Tahoma, sans-serif;
+$secondary-font: Georgia, 'Times New Roman', Times, serif;
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    font-family: $primary-font;
+}
+
+body {
+    padding: 20px;
+}
+
+#page-title {
+    font-family: $secondary-font;
+}
+
+%listings {
+    list-style: none;
+
+    .listing {
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 10px;
+
+        display: flex;
+        gap: 10px;
+
+        max-width: 1600px;
+
+        .image-box {
+            width: 220px;
+            height: 220px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background-color: rgba(0, 0, 0, 0.1);
+
+            border-radius: 12px;
+
+            img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+        }
+
+        .info {
+            flex: 1;
+
+            display: flex;
+            flex-direction: column;
+
+            .info-top {
+                display: flex;
+                justify-content: space-between;
+
+                .byuser {
+                    font-family: $secondary-font;
+                }
+
+                .price {
+                    font-weight: bold;
+                    font-family: $secondary-font;
+                    font-size: 1.5em;
+                }
+            }
+
+            .info-bottom {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                
+                margin-bottom: auto;
+
+                .title {
+                    font-size: 1.5em;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                .dsc {
+                    overflow-y: auto;
+                    max-height: 100px;
+                }
+            }
+
+            .info-footer {
+                display: flex;
+
+                .go-to-listing {
+                    margin-left: auto;
+                }
+            }
+        }
+    }
+
+}
+
+#active-listings {
+    @extend %listings;
+}
+
+#my-listings {
+    @extend %listings;
+}
+
+@media (max-width: 768px) {
+
+    %listings {
+        .listing {
+            flex-direction: column;
+
+            .image-box {
+                width: 100%;
+                height: 200px;  
+            }
+        }
+    }
+}
