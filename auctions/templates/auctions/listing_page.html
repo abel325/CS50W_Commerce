@@ -10,7 +10,11 @@
 
         <div id="listing">
             <div id="image-box">
-                <img src="{{ listing.image.url }}" alt="{{ listing.title }}">
+                {% if listing.image %}
+                        <img src="{{ listing.image.url }}" alt="{{ listing.title }}">
+                    {% else %}
+                        <h5>No Image</h5>
+                    {% endif %}
             </div>
             <div id="info">
                 {% if user.is_authenticated %}
