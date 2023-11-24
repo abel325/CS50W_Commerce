@@ -6,8 +6,11 @@ from .models import User, AuctionListing, Bid, Comment, AuctionCategory
 class AuctionListingAdmin(admin.ModelAdmin):
     list_display = ("id", "user", "title", "description", "bid", "category")
 
+class UserAdmin(admin.ModelAdmin):
+    list_display = ("id", "username", "email")
 
-admin.site.register(User)
+
+admin.site.register(User, UserAdmin)
 admin.site.register(AuctionListing, AuctionListingAdmin)
 admin.site.register(Bid)
 admin.site.register(Comment)

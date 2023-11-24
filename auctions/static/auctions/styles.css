@@ -14,6 +14,10 @@ body {
     padding: 20px;
 }
 
+/* <----------------------------------------------------> */
+
+/* New Listing Page */
+
 #new_listing_title {
     text-align: center;
 }
@@ -38,9 +42,11 @@ body {
     max-width: 200px;
 }
 
+/* <----------------------------------------------------> */
+
 /* Active Listings Page */
 
-#active_listings {
+#active-listings {
     list-style: none;
 
     display: flex;
@@ -49,7 +55,7 @@ body {
     gap: 20px;
 }
 
-#active_listings .listing {
+#active-listings .listing {
     border: 1px solid rgba(0,0,0,0.3);
     border-radius: 10px;
 
@@ -74,7 +80,12 @@ body {
     width: 200px;
 }
 
-.listing .info .top {
+.listing .info {
+    display: flex;
+    flex-direction: column;
+}
+
+.info .top {
     display: flex;
     justify-content: space-between;
 }
@@ -105,5 +116,220 @@ body {
     overflow-y: auto;
 }
 
+.info .go-to-listing {
+    align-self: flex-end;
 
+    padding: 10px;  
+    border-radius: 12px;
+    
+    color: white;
+    background-color: #4285f4;
+    
+    text-decoration: none;
 
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.go-to-listing:hover {
+    background-color: #1f6ce8;
+}
+
+/* <----------------------------------------------------> */
+
+/* Listing Page */
+
+#listing-page {
+    display: flex;
+    flex-direction: column;
+}
+
+#listing-page #listing {
+    border: 1px solid rgba(0,0,0,0.3);
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 20px;
+
+    max-width: 700px;
+}
+
+#listing-page #listing #image-box {
+    max-width: 700px;
+    display: flex;
+}
+
+#listing-page #listing #image-box img {
+    flex: 1;
+    width: 200px;
+}
+
+#listing-page #listing #info {
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+}
+
+#listing-page #listing #info #top-side {
+    display: flex;
+    justify-content: space-between;
+}
+
+#listing-page #listing #info #top-side #byuser {
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#listing-page #listing #info #top-side #price {
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+    font-size: 1.5em;
+}
+
+#listing-page #listing #info #title {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+#listing-page #place-bid-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+#place-bid-form label{
+    font-size: 0.9em;
+    margin-bottom: 0;
+}
+
+#place-bid-form #bid {
+    max-width: 200px;
+}
+
+#place-bid-form #submit-bid-btn {
+    align-self: start;
+
+    padding: 5px 10px;  
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    
+    color: white;
+    background-color: #4285f4;
+    
+    text-decoration: none;
+}
+
+#w-form {
+    margin-bottom: 10px;
+}
+
+#w-form #w-btn { 
+    border: none;
+    border-radius: 0 0 5px 5px;
+
+    padding: 5px 10px;
+
+    font-size: 0.9em;
+}
+
+#w-btn:hover {
+    background-color: rgba(0,0,0,0.1)
+}
+
+#close-listing-form {
+    display: flex;
+    justify-content: end;
+}
+
+#close-listing-btn {
+    color: red;
+    background-color: transparent;
+    border: none;
+}
+
+#close-listing-btn:hover {
+    text-decoration: underline;
+}
+
+#closed {
+    color: red;
+    font-weight: bold;
+    font-size: 2em;
+
+    position: absolute;
+    top: 50px;
+    left: 250px;
+}
+
+/* My Listings Page */
+
+#my-listings {
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+#my-listings .listing {
+    border: 1px solid rgba(0,0,0,0.3);
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 20px;
+
+    max-width: 700px;
+}
+
+/* Watchlist Page */
+
+#watchlist {
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+#watchlist .listing {
+    border: 1px solid rgba(0,0,0,0.3);
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 20px;
+
+    max-width: 700px;
+}
+
+/* Wom Listings Page */
+
+#won-listings {
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+#won-listings .listing {
+    border: 1px solid rgba(0,0,0,0.3);
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 20px;
+
+    max-width: 700px;
+}
