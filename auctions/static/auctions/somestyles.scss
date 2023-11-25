@@ -1,5 +1,6 @@
 $primary-font: Verdana, Geneva, Tahoma, sans-serif;
 $secondary-font: Georgia, 'Times New Roman', Times, serif;
+$primary-border-radius: 12px;
 
 * {
     box-sizing: border-box;
@@ -22,7 +23,7 @@ body {
 
     .listing {
         border: 1px solid rgba(0, 0, 0, 0.4);
-        border-radius: 12px;
+        border-radius: $primary-border-radius;
         padding: 20px;
         margin-bottom: 10px;
 
@@ -41,7 +42,7 @@ body {
 
             background-color: rgba(0, 0, 0, 0.1);
 
-            border-radius: 12px;
+            border-radius: $primary-border-radius;
 
             img {
                 max-width: 100%;
@@ -122,4 +123,88 @@ body {
             }
         }
     }
+}
+
+// <---------------------------------------------------------------->
+// New Listing Page 
+
+#new-listing-title {
+    font-family: $secondary-font;
+    margin-bottom: 20px;
+
+    text-align: center;
+}
+
+%listing-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 1100px;
+
+    padding: 20px;
+    margin: 0 auto;
+
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: $primary-border-radius;
+}
+
+#new-listing-form {
+    @extend %listing-form;
+
+    label {
+        margin-bottom: 0;
+        margin-top: 10px;
+    }
+
+    #title {
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        border-radius: 6px;
+        outline: none;
+
+        padding: 3px 6px;
+    }
+
+    #description {
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        border-radius: 6px;
+        outline: none;
+
+        padding: 6px;
+
+        resize: vertical;
+    }
+
+    #category {
+        max-width: 200px;
+
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        border-radius: 6px;
+
+        background-color: white;
+
+        padding: 5px 6px;
+    }
+
+    #starting-bid {
+        max-width: 200px;
+
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        border-radius: 6px;
+        outline: none;
+
+        padding: 3px 6px;
+    }
+
+    #submit-btn {
+        max-width: 100px;
+        
+        border: none;
+        border-radius: 5px;
+
+        padding: 3px 6px;
+        margin-top: 10px; 
+
+        background-color: #4285f4;
+        color: white;   
+    }
+
 }
