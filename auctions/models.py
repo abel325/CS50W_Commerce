@@ -1,6 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-
+import os
 
 class User(AbstractUser):
     # watchlist = models.ManyToManyField('AuctionListing', blank=True, related_name="users")
@@ -19,6 +19,13 @@ class AuctionListing(models.Model):
     bid = models.FloatField()
     active = models.BooleanField(default=True)
     winner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="won_listings")
+
+    
+    def delete(self, *Args, **kwargs):
+        if os.path.isfile(self.image.path):
+            os.remove(self.image.path)
+
+        super(AuctionListing, self).delete(*Args, **kwargs)
 
     def __str__(self):
         return f"{self.id}: {self.title} posted by {self.user.username}"
