@@ -7,7 +7,7 @@
     <div id="listing-page">
         <div id="listing">
             {% if user == listing.winner %} 
-                <div id="winner-announcement">You won this auction!</div>
+                <div id="winner-announcement">You won this auction! Contact the seller at <a href="mailto:{{ listing.user.email }}">{{ listing.user.email }}</a></div>
             {% elif user != listing.winner and not listing.active %}
                 <div id="closed-announcement">This auction is closed.</div>
             {% endif %} 
