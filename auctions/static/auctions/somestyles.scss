@@ -1,0 +1,379 @@
+$primary-font: Verdana, Geneva, Tahoma, sans-serif;
+$secondary-font: Georgia, 'Times New Roman', Times, serif;
+$primary-border-radius: 12px;
+$secondary-border-radius: 5px;
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    font-family: $primary-font;
+}
+
+body {
+    padding: 20px;
+}
+
+#page-title {
+    font-family: $secondary-font;
+}
+
+%listings {
+    list-style: none;
+
+    .listing {
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        border-radius: $primary-border-radius;
+        padding: 20px;
+        margin-bottom: 10px;
+
+        display: flex;
+        gap: 10px;
+
+        max-width: 1600px;
+
+        .image-box {
+            width: 220px;
+            height: 220px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background-color: rgba(0, 0, 0, 0.1);
+
+            border-radius: $primary-border-radius;
+
+            img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+        }
+
+        .info {
+            flex: 1;
+
+            display: flex;
+            flex-direction: column;
+
+            .info-top {
+                display: flex;
+                justify-content: space-between;
+
+                .byuser {
+                    font-family: $secondary-font;
+                }
+
+                .price {
+                    font-weight: bold;
+                    font-family: $secondary-font;
+                    font-size: 1.5em;
+                }
+            }
+
+            .info-bottom {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                
+                margin-bottom: auto;
+
+                .title {
+                    font-size: 1.5em;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                .dsc {
+                    overflow-y: auto;
+                    max-height: 100px;
+                }
+            }
+
+            .info-footer {
+                display: flex;
+
+                .go-to-listing {
+                    margin-left: auto;
+                }
+            }
+        }
+    }
+
+}
+
+#active-listings {
+    @extend %listings;
+}
+
+#my-listings {
+    @extend %listings;
+}
+
+@media (max-width: 768px) {
+
+    %listings {
+        .listing {
+            flex-direction: column;
+
+            .image-box {
+                width: 100%;
+                height: 200px;  
+            }
+        }
+    }
+}
+
+// <---------------------------------------------------------------->
+// New Listing Page 
+
+#new-listing-title {
+    font-family: $secondary-font;
+    margin-bottom: 20px;
+
+    text-align: center;
+}
+
+%listing-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 1100px;
+
+    padding: 20px;
+    margin: 0 auto;
+
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: $primary-border-radius;
+}
+
+#new-listing-form {
+    @extend %listing-form;
+
+    label {
+        margin-bottom: 0;
+        margin-top: 10px;
+    }
+
+    #title {
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        border-radius: 6px;
+        outline: none;
+
+        padding: 3px 6px;
+    }
+
+    #description {
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        border-radius: 6px;
+        outline: none;
+
+        padding: 6px;
+
+        resize: vertical;
+    }
+
+    #category {
+        max-width: 200px;
+
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        border-radius: 6px;
+
+        background-color: white;
+
+        padding: 5px 6px;
+    }
+
+    #starting-bid {
+        max-width: 200px;
+
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        border-radius: 6px;
+        outline: none;
+
+        padding: 3px 6px;
+    }
+
+    #submit-btn {
+        max-width: 100px;
+        
+        border: none;
+        border-radius: 5px;
+
+        padding: 3px 6px;
+        margin-top: 10px; 
+
+        background-color: #4285f4;
+        color: white;   
+    }
+
+}
+
+// <---------------------------------------------------------------->
+// Listing Page
+
+#listing-page {
+    max-width: 1200px;
+
+    margin: 0 auto;
+    padding: 20px;
+
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-top: none;
+    border-bottom: none;
+
+    #closed-listing {
+        display: block;
+        width: 60%;
+
+        margin: 0 auto;
+    }
+
+    #listing {
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+
+        #winner-announcement {
+            height: 50px;
+            width: 100%;
+
+            padding: 10px;
+            vertical-align: middle;
+
+            background-color: greenyellow;
+        }
+
+        #closed-announcement {
+            height: 50px;
+            width: 100%;
+
+            padding: 10px;
+            vertical-align: middle;
+
+            background-color: #ea4335;    
+            color: #fff;
+        }
+
+        #image-box {
+            max-width: 700px;
+
+            img {
+                max-width: 100%;
+            }
+        }
+
+        #w-btn {
+            border: none;
+            border-radius: 0 0 $secondary-border-radius $secondary-border-radius;
+
+            padding: 3px 7px;
+        }
+
+        #info {
+            padding-top: 10px;
+
+            width: 100%;
+
+            #info-top {
+                display: flex;
+                justify-content: space-between;
+
+                #byuser, #price {
+                    font-family: $secondary-font;
+                    align-self: center;
+                }
+
+                #price {
+                    font-size: 1.6em;
+                    font-weight: bold;
+                }
+            }
+
+            #info-bottom {
+
+                #title {
+                    font-size: 1.4em;
+                    margin-bottom: 10px;
+                }
+
+                #place-bid-form {
+                    display: flex;
+                    flex-direction: column;
+
+                    margin-bottom: 20px;
+
+                    label {
+                        font-size: 0.9em;
+                        margin: 0;
+                    }
+
+                    #bid {
+                        max-width: 200px;
+                    }
+
+                    #submit-bid-btn {
+                        max-width: 150px;
+                        margin-top: 10px;
+                    }
+
+                }
+
+            }
+
+            #info-footer {
+                margin-top: 10px;
+
+                display: flex;
+                gap: 10px;
+
+                #close-listing-form {
+                    display: flex;
+                    
+                    #close-listing-btn {                        
+                        padding: 5px 8px; 
+
+                        border: none;
+                        border-radius: $secondary-border-radius;
+
+                        background-color: #ea4335;
+                        color: #fff;
+
+                        &:hover {
+                            background-color: #c71100;
+                        }
+                    }
+                }
+
+                #delete-listing-form {
+                    display: flex;
+                    margin-left: auto;
+
+                    #delete-listing-btn {
+                        padding: 5px 8px;
+
+                        border: none;
+                        border-radius: $secondary-border-radius;
+
+                        background-color: #ea4335;
+                        color: #fff;
+
+                        &:hover {
+                            background-color: #c71100;
+                        }
+                    }
+                }
+
+
+            }
+
+        }
+
+
+    }
+
+    
+}
+
+

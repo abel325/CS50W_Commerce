@@ -4,12 +4,12 @@
 
 {% block body %}
 
-    <h2 id="new_listing_title">Create New Listing</h2>
+    <h2 id="new-listing-title">Create New Listing</h2>
 
-    <form action="{% url 'new_listing' %}" method="post" id="new_listing_form" enctype="multipart/form-data">
+    <form action="{% url 'new_listing' %}" method="post" id="new-listing-form" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form }}
-        <input type="submit" value="Submit" id="submit_btn">
+        <input type="submit" value="Submit" id="submit-btn">
     </form>
 
 {% endblock %}

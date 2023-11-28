@@ -1,26 +1,32 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
-    <h2>Active Listings</h2>
+    <h2 id="page-title">Active Listings</h2>
 
     <ul id="active-listings">
         {% for listing in active_listings %}
             <li class="listing">
                 
-                <a href="{% url 'listing_page' listing.id %}">
-                    <div class="image-box">
-                        <img src="{{ listing.image.url }}" alt="{{ listing.title }}">
-                    </div>
-                </a>
-
+                <div class="image-box"> 
+                    {% if listing.image %}
+                        <img src="{{ listing.image.url }}" alt="{{ listing.title }}" class="image">
+                    {% else %}
+                        <h5>No Image</h5>
+                    {% endif %}
+                </div>
+                
                 <div class="info">
-                    <div class="top">
+                    <div class="info-top">
                         <div class="byuser"><strong>by</strong> {{ listing.user.username }}</div>
-                        <div class="price"><strong></strong> ${{ listing.bid }} </div>
+                        <div class="price"> ${{ listing.bid }} </div>
                     </div>
-                    <div class="title">{{ listing.title }}</div>
-                    <div class="dsc">{{ listing.description }}</div>
-                    <!-- <a href="{% url 'listing_page' listing.id %}" class="go-to-listing">Go to listing</a> -->
+                    <div class="info-bottom">
+                        <div class="title">{{ listing.title }}</div>
+                        <div class="dsc">{{ listing.description }}</div>
+                    </div>
+                    <div class="info-footer">
+                        <a href="{% url 'listing_page' listing.id %}" class="go-to-listing">Go to listing</a>
+                    </div>
                 </div>
 
             </li>
