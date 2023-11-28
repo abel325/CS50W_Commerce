@@ -171,7 +171,13 @@ def close_listing(request, listing_id):
 
         highest_bidder = listing.al_bids.order_by('-value').first().user
 
-        listing.winner = highest_bidder if highest_bidder is not listing.user else None
+        if (highest_bidder != listing.user):
+            listing.winner = highest_bidder
+
+        for user in listing.w_users.all():
+            if user != highest_bidder:
+                listing.w_users.remove(user)
+
         listing.active = False
         listing.save()
 
@@ -179,6 +185,17 @@ def close_listing(request, listing_id):
     else:
         return HttpResponseRedirect(reverse('index'))
     
+@login_required
+def delete_listing(request, listing_id):
+    if request.method == 'POST':
+        listing = AuctionListing.objects.get(id=listing_id)
+
+        if (request.user == listing.user):
+            listing.delete()
+
+    return HttpResponseRedirect(reverse('index'))
+            
+
 @login_required
 def my_listings(request):
     return render(request, 'auctions/my_listings.html')
