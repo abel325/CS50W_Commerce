@@ -6,10 +6,17 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django import forms
 from .forms import NewListingForm
+from django.template import loader
 
 from .models import User, AuctionCategory, AuctionListing, Bid
 
-
+def testing(request):
+  categories = AuctionCategory.objects.all()
+  layout = loader.get_template('layout.html')
+  context = {
+    'categories': categories,
+  }
+  return HttpResponse(layout.render(context, request))
 
 
 
