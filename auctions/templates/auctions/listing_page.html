@@ -59,6 +59,7 @@
                 </div>
 
                 <div id="info-footer">
+                    <a href="{% url 'categories' listing.category.name %}" class="category-tag">#{{ listing.category.name }}</a>
                     {% if user == listing.user %}
                         <form action="{% url 'delete_listing' listing.id %}" method="post" id="delete-listing-form">
                             {% csrf_token %}

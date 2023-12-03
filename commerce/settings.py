@@ -127,3 +127,6 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+TEMPLATES[0]['OPTIONS']['context_processors'].append("auctions.context_processors.categories_processor")

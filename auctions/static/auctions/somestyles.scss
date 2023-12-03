@@ -15,9 +15,23 @@ body {
     padding: 20px;
 }
 
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+#body-container {
+    margin-top: 40px;
+}
+
+#nav-login {
+    margin-left: auto;
+}
+
 #page-title {
     font-family: $secondary-font;
 }
+
 
 %listings {
     list-style: none;
@@ -109,6 +123,10 @@ body {
 }
 
 #my-listings {
+    @extend %listings;
+}
+
+#categories {
     @extend %listings;
 }
 
@@ -327,6 +345,10 @@ body {
 
                 display: flex;
                 gap: 10px;
+
+                .category-tag {
+                    align-self: center;
+                }
 
                 #close-listing-form {
                     display: flex;

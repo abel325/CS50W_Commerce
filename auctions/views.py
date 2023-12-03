@@ -6,10 +6,9 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django import forms
 from .forms import NewListingForm
+from django.template import loader
 
 from .models import User, AuctionCategory, AuctionListing, Bid
-
-
 
 
 
@@ -207,3 +206,16 @@ def watchlist(request):
 @login_required
 def won_listings(request):
     return render(request, 'auctions/won_listings.html')
+
+
+def categories(request, category):
+    
+    if(AuctionCategory.objects.filter(name=category).exists()):
+        listings = AuctionListing.objects.all().filter(category__name=category)
+
+        return render(request, 'auctions/categories.html', {
+            'category': category,
+            'listings': listings,
+        })
+    else:
+        return HttpResponseRedirect(reverse('index'))

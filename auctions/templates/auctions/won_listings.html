@@ -1,5 +1,7 @@
 {% extends "auctions/layout.html" %}
 
+{% block title %} Won Listings {% endblock %}
+
 {% block body %}
     <h2 id="page-title">Won Listings</h2>
 
@@ -25,6 +27,7 @@
                         <div class="dsc">{{ listing.description }}</div>
                     </div>
                     <div class="info-footer">
+                        <a href="{% url 'categories' listing.category.name %}" class="category-tag">#{{ listing.category.name }}</a>
                         <a href="{% url 'listing_page' listing.id %}" class="go-to-listing">Go to listing</a>
                     </div>
                 </div>
