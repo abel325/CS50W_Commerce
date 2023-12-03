@@ -15,12 +15,27 @@ body {
     padding: 20px;
 }
 
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+#body-container {
+    margin-top: 40px;
+}
+
+#nav-login {
+    margin-left: auto;
+}
+
 #page-title {
     font-family: $secondary-font;
 }
 
 %listings {
     list-style: none;
+
+    // padding-left: 0;
 
     .listing {
         border: 1px solid rgba(0, 0, 0, 0.4);
