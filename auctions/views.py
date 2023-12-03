@@ -10,14 +10,6 @@ from django.template import loader
 
 from .models import User, AuctionCategory, AuctionListing, Bid
 
-def testing(request):
-  categories = AuctionCategory.objects.all()
-  layout = loader.get_template('layout.html')
-  context = {
-    'categories': categories,
-  }
-  return HttpResponse(layout.render(context, request))
-
 
 
 def index(request):
@@ -214,3 +206,16 @@ def watchlist(request):
 @login_required
 def won_listings(request):
     return render(request, 'auctions/won_listings.html')
+
+
+def categories(request, category):
+    
+    if(AuctionCategory.objects.filter(name=category).exists()):
+        listings = AuctionListing.objects.all().filter(category__name=category)
+
+        return render(request, 'auctions/categories.html', {
+            'category': category,
+            'listings': listings,
+        })
+    else:
+        return HttpResponseRedirect(reverse('index'))

@@ -1,12 +1,12 @@
 {% extends "auctions/layout.html" %}
 
-{% block title %} Watchlist {% endblock %}
+{% block title %} {{ category }} Category {% endblock %}
 
 {% block body %}
-    <h2 id="page-title">Watchlist</h2>
+    <h2 id="page-title">{{ category }}</h2>
 
-    <ul id="my-listings">
-        {% for listing in user.watchlist.all %}
+    <ul id="categories">
+        {% for listing in listings %}
             <li class="listing">
                 
                 <div class="image-box">
@@ -27,7 +27,6 @@
                         <div class="dsc">{{ listing.description }}</div>
                     </div>
                     <div class="info-footer">
-                        <a href="{% url 'categories' listing.category.name %}" class="category-tag">#{{ listing.category.name }}</a>
                         <a href="{% url 'listing_page' listing.id %}" class="go-to-listing">Go to listing</a>
                     </div>
                 </div>

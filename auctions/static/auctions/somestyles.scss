@@ -32,10 +32,9 @@ ul {
     font-family: $secondary-font;
 }
 
+
 %listings {
     list-style: none;
-
-    // padding-left: 0;
 
     .listing {
         border: 1px solid rgba(0, 0, 0, 0.4);
@@ -124,6 +123,10 @@ ul {
 }
 
 #my-listings {
+    @extend %listings;
+}
+
+#categories {
     @extend %listings;
 }
 
@@ -342,6 +345,10 @@ ul {
 
                 display: flex;
                 gap: 10px;
+
+                .category-tag {
+                    align-self: center;
+                }
 
                 #close-listing-form {
                     display: flex;
