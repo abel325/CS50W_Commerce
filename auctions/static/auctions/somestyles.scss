@@ -447,6 +447,98 @@ ul.navbar-nav {
 
     }
 
+    #comment-section {
+        margin-top: 30px;
+        padding: 10px;
+
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        border-radius: $secondary-border-radius;
+
+        #addCommentForm {
+            // width: 100%;
+
+            display: flex;
+            flex-direction: column;
+
+            textarea {
+                width: 100%;
+                padding: 5px;
+            }
+
+            #add-comment-btn {
+                max-width: 150px;
+                margin-top: 10px;
+
+                padding: 5px 8px;
+
+                border: none;
+                border-radius: $secondary-border-radius;
+
+                background-color: #4285f4;
+                color: #fff;
+
+                &:hover {
+                    background-color: #1971ff;
+                }
+
+                align-self: end;
+            }
+        }
+
+        #comments {
+            display: flex;
+            flex-direction: column;
+
+            border-top: 1px solid rgba(0, 0, 0, 0.4);
+
+            margin-top: 10px;
+
+            .comment {
+                padding: 5px 10px;
+                margin: 5px 0;
+
+                border: 1px solid rgba(0, 0, 0, 0.4);
+                border-radius: $secondary-border-radius;
+
+                .comment-header {
+                    display: flex;
+
+                    justify-content: space-between;
+
+                    .comment-user {
+                        font-weight: bold;
+                    }
+                }
+
+                .comment-body {
+                    margin-top: 5px;
+                    padding-left: 10px;
+                }
+
+                .delete-comment-form {
+                    display: flex;
+                    justify-content: flex-end;
+                    margin-top: 5px;
+
+                    .delete-comment-btn {
+                        padding: 5px 8px;
+
+                        border: none;
+                        border-radius: $secondary-border-radius;
+
+                        background-color: #ea4335;
+                        color: #fff;
+
+                        &:hover {
+                            background-color: #c71100;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
     
 }
 

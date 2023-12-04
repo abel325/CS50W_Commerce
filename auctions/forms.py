@@ -45,6 +45,10 @@ class NewListingForm(forms.Form):
 
 
 
-class WForm(forms.Form):
-    pass
+class AddCommentForm(forms.Form):
+    comment = forms.CharField(
+        required=True,
+        widget=forms.Textarea(attrs={
+            'id': 'comment', 'name': 'comment', 'placeholder': 'Add a comment...', 'cols': '50', 'rows': '1'
+        }))
 

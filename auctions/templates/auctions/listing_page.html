@@ -76,8 +76,36 @@
 
             </div>
         </div>
+
+
         <div id="comment-section">
-            
+            <h3>Comments</h3>
+            {% if user.is_authenticated %}
+                <form action="{% url 'add_comment' listing.id %}" method="post" id="addCommentForm">
+                    {% csrf_token %}
+                    {{ add_comment_form }}
+                    <input type="submit" value="Add Comment" id="add-comment-btn">
+                </form>
+            {% else %}
+                <div id="login-to-comment">Please <a href="{% url 'login' %}">login</a> to comment.</div>
+            {% endif %}
+            <div id="comments">
+                {% for comment in al_comments %}
+                    <div class="comment">
+                        <div class="comment-header">
+                            <div class="comment-user">{{ comment.user.username }}</div>
+                            {% comment %} <div class="comment-time">{{ comment.time }}</div> {% endcomment %}
+                        </div>
+                        <div class="comment-body">{{ comment.content }}</div>
+                        {% if comment.user == user %}
+                            <form action="{% url 'delete_comment' comment.id %}" method="post" class="delete-comment-form">
+                                {% csrf_token %}
+                                <input type="submit" value="Delete" class="delete-comment-btn">
+                            </form>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
         </div>
 
     </div>
