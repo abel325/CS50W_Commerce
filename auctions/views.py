@@ -5,10 +5,10 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django import forms
-from .forms import NewListingForm
+from .forms import NewListingForm, AddCommentForm
 from django.template import loader
 
-from .models import User, AuctionCategory, AuctionListing, Bid
+from .models import User, AuctionCategory, AuctionListing, Bid, Comment
 
 
 
@@ -113,6 +113,8 @@ def listing_page(request, listing_id):
 
     return render(request, 'auctions/listing_page.html', {
         'listing': listing,
+        'add_comment_form': AddCommentForm(),
+        'al_comments': listing.al_comments.all().order_by('-id'),
     })
 
 @login_required
@@ -193,6 +195,33 @@ def delete_listing(request, listing_id):
             listing.delete()
 
     return HttpResponseRedirect(reverse('index'))
+
+@login_required
+def add_comment(request, listing_id):
+    if request.method == 'POST':
+        listing = AuctionListing.objects.get(id=listing_id)
+        content = request.POST['comment']
+
+        comment = Comment(user=request.user, listing=listing, content=content)
+        comment.save()
+
+        return HttpResponseRedirect(reverse('listing_page', args=(listing_id,)))
+    else:
+        return HttpResponseRedirect(reverse('index'))
+    
+
+@login_required
+def delete_comment(request, comment_id):
+    if request.method == 'POST':
+        comment = Comment.objects.get(id=comment_id)
+
+        if (request.user == comment.user):
+            comment.delete()
+
+        return HttpResponseRedirect(reverse('listing_page', args=(comment.listing.id,)))
+    else:
+        return HttpResponseRedirect(reverse('index'))
+
             
 
 @login_required
