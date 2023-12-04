@@ -17,9 +17,17 @@ body {
 
 // Bootstrap 
 
+.navbar-brand {
+    font-family: $secondary-font;
+}
+
 ul {
     margin: 0;
     padding: 0;
+}
+
+ul.navbar-nav {
+    margin-bottom: 0 !important;
 }
 
 // < ------------------------------ >
