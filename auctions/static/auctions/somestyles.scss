@@ -163,6 +163,21 @@ ul.navbar-nav {
 
                 .go-to-listing {
                     margin-left: auto;
+                    
+                    padding: 5px 8px;
+
+                    border: none;
+                    border-radius: $secondary-border-radius;
+
+                    background-color: #4285f4;
+                    color: #fff;
+
+                    text-decoration: none;
+
+                    &:hover {
+                        background-color: #1971ff;
+                    }
+                    
                 }
             }
         }
