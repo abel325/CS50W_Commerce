@@ -41,7 +41,12 @@ class Bid(models.Model):
     
 
 class Comment(models.Model):
-    pass
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_comments")
+    listing = models.ForeignKey(AuctionListing, on_delete=models.CASCADE, related_name="al_comments")
+    content = models.TextField()
+
+    def __str__(self):
+        return f"{self.id}: {self.user.username} commented on {self.listing.title} auction"
 
 class AuctionCategory(models.Model):
     name = models.CharField(max_length=64)
