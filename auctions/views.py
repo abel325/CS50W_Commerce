@@ -82,6 +82,7 @@ def new_listing(request):
             category = form.cleaned_data['categories']
             starting_bid = form.cleaned_data['starting_bid']
             image = form.cleaned_data['image']
+            currency = form.cleaned_data['currency']
 
             listing = AuctionListing(
                 user=request.user, 
@@ -89,7 +90,8 @@ def new_listing(request):
                 description=description,
                 category=category,
                 bid=starting_bid,
-                image=image
+                image=image,
+                currency = currency
             )
 
             bid = Bid(value=starting_bid, listing=listing, user=request.user)

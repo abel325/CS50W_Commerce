@@ -267,17 +267,45 @@ ul.navbar-nav {
 
         background-color: white;
 
-        padding: 5px 6px;
+        padding: 4px 6px;
     }
 
-    #starting-bid {
-        max-width: 200px;
+    #bid-container {
+        display: flex;
 
-        border: 1px solid rgba(0, 0, 0, 0.4);
-        border-radius: 6px;
-        outline: none;
+        #bid-input {
+            display: flex;
+            flex-direction: column;
 
-        padding: 3px 6px;
+            max-width: 200px;
+
+            #starting-bid {
+                width: 100%;
+        
+                border: 1px solid rgba(0, 0, 0, 0.4);
+                border-radius: 6px;
+                outline: none;
+        
+                padding: 3px 6px;
+            }
+        }
+
+        #curr-input {
+            display: flex;
+            flex-direction: column;
+            margin-left: 10px;
+
+            #currency {
+                width: 100px;
+
+                border: 1px solid rgba(0, 0, 0, 0.4);
+                border-radius: 6px;
+        
+                background-color: white;
+        
+                padding: 4px 6px;
+            }
+        }
     }
 
     #submit-btn {

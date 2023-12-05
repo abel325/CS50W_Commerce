@@ -42,7 +42,9 @@
                     <div id="byuser"><strong>by</strong> {{ listing.user.username }}</div>
                     <div id="price-ctn"> 
                         <div id="price"> 
-                            ${{ listing.bid }} 
+                            {% with listing.currency.symbol|add:listing.bid as total %}
+                                {{ total }}
+                            {% endwith %}
                         </div>
                         <div id="last-bid">
                             {% if user.is_authenticated and listing.user == user %}
