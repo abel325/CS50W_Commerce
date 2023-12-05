@@ -111,10 +111,15 @@ def new_listing(request):
 def listing_page(request, listing_id):
     listing = AuctionListing.objects.get(id=listing_id)
 
+    user_last_bid = 0
+    if (request.user.is_authenticated and listing.al_bids.filter(user=request.user).exists()):
+        user_last_bid = listing.al_bids.filter(user=request.user).order_by('-id').first().value
+
     return render(request, 'auctions/listing_page.html', {
         'listing': listing,
         'add_comment_form': AddCommentForm(),
         'al_comments': listing.al_comments.all().order_by('-id'),
+        'user_last_bid': user_last_bid,
     })
 
 @login_required

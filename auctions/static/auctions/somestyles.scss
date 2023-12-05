@@ -308,13 +308,6 @@ ul.navbar-nav {
     border-top: none;
     border-bottom: none;
 
-    #closed-listing {
-        display: block;
-        width: 60%;
-
-        margin: 0 auto;
-    }
-
     #listing {
         display: flex;
         flex-direction: column; 
@@ -339,6 +332,14 @@ ul.navbar-nav {
 
             background-color: #ea4335;    
             color: #fff;
+
+            a {
+                color: #fff;
+
+                &:hover {
+                    color: #ddd;
+                }
+            }
         }
 
         #image-box {
@@ -370,10 +371,25 @@ ul.navbar-nav {
                     align-self: center;
                 }
 
-                #price {
-                    font-size: 1.6em;
-                    font-weight: bold;
+                #price-ctn {
+                    position: relative;
+
+                    #price {
+                        font-size: 1.6em;
+                        font-weight: bold;
+                    }
+
+                    #last-bid {
+                        position: absolute;
+                        right: 0;
+
+                        white-space: nowrap;
+
+                        font-size: 0.8em;
+                    }
                 }
+
+                
             }
 
             #info-bottom {

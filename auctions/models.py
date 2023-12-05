@@ -22,8 +22,9 @@ class AuctionListing(models.Model):
 
     
     def delete(self, *Args, **kwargs):
-        if os.path.isfile(self.image.path):
-            os.remove(self.image.path)
+        if self.image:
+            if os.path.isfile(self.image.path):
+                os.remove(self.image.path)
 
         super(AuctionListing, self).delete(*Args, **kwargs)
 

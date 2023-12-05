@@ -1,5 +1,5 @@
 {% extends "auctions/layout.html" %}
-<!-- {% load static %} -->
+{% load static %}
 
 {% block title %} {{ listing.title }} {% endblock %}
 
@@ -9,7 +9,11 @@
             {% if user == listing.winner %} 
                 <div id="winner-announcement">You won this auction! Contact the seller at <a href="mailto:{{ listing.user.email }}">{{ listing.user.email }}</a></div>
             {% elif user != listing.winner and not listing.active %}
-                <div id="closed-announcement">This auction is closed.</div>
+                {% if user == listing.user and listing.winner %}
+                    <div id="closed-announcement">This auction is closed. Contact the buyer at <a href="mailto:{{ listing.winner.email }}">{{ listing.winner.email }}</a></div>
+                {% else %}
+                    <div id="closed-announcement">This auction is closed.</div>
+                {% endif %}
             {% endif %} 
 
             <div id="image-box">
@@ -36,7 +40,18 @@
             <div id="info">
                 <div id="info-top">
                     <div id="byuser"><strong>by</strong> {{ listing.user.username }}</div>
-                    <div id="price"><strong></strong> ${{ listing.bid }} </div>
+                    <div id="price-ctn"> 
+                        <div id="price"> 
+                            ${{ listing.bid }} 
+                        </div>
+                        <div id="last-bid">
+                            {% if user.is_authenticated and listing.user == user %}
+                                First price: {{ user_last_bid }}
+                            {% elif user.is_authenticated %}
+                                Your last bid: {{ user_last_bid }}
+                            {% endif %}
+                        </div>
+                    </div>
                 </div>
                 
                 <div id="info-bottom">
@@ -59,7 +74,9 @@
                 </div>
 
                 <div id="info-footer">
-                    <a href="{% url 'categories' listing.category.name %}" class="category-tag">#{{ listing.category.name }}</a>
+                    {% if listing.category %}
+                        <a href="{% url 'categories' listing.category.name %}" class="category-tag">#{{ listing.category.name }}</a>
+                    {% endif %}
                     {% if user == listing.user %}
                         <form action="{% url 'delete_listing' listing.id %}" method="post" id="delete-listing-form">
                             {% csrf_token %}
@@ -80,12 +97,14 @@
 
         <div id="comment-section">
             <h3>Comments</h3>
-            {% if user.is_authenticated %}
+            {% if user.is_authenticated and listing.active %}
                 <form action="{% url 'add_comment' listing.id %}" method="post" id="addCommentForm">
                     {% csrf_token %}
                     {{ add_comment_form }}
                     <input type="submit" value="Add Comment" id="add-comment-btn">
                 </form>
+            {% elif not listing.active %}
+                <div id="closed-comment">This auction is closed.</div>
             {% else %}
                 <div id="login-to-comment">Please <a href="{% url 'login' %}">login</a> to comment.</div>
             {% endif %}
@@ -97,7 +116,7 @@
                             {% comment %} <div class="comment-time">{{ comment.time }}</div> {% endcomment %}
                         </div>
                         <div class="comment-body">{{ comment.content }}</div>
-                        {% if comment.user == user %}
+                        {% if comment.user == user and listing.active %}
                             <form action="{% url 'delete_comment' comment.id %}" method="post" class="delete-comment-form">
                                 {% csrf_token %}
                                 <input type="submit" value="Delete" class="delete-comment-btn">

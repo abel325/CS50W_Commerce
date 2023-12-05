@@ -27,7 +27,9 @@
                         <div class="dsc">{{ listing.description }}</div>
                     </div>
                     <div class="info-footer">
-                        <a href="{% url 'categories' listing.category.name %}" class="category-tag">#{{ listing.category.name }}</a>
+                        {% if listing.category %}
+                            <a href="{% url 'categories' listing.category.name %}" class="category-tag">#{{ listing.category.name }}</a>
+                        {% endif %}
                         <a href="{% url 'listing_page' listing.id %}" class="go-to-listing">Go to listing</a>
                     </div>
                 </div>
