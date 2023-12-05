@@ -2,6 +2,8 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 import os
 
+from django.utils import timezone
+
 class User(AbstractUser):
     # watchlist = models.ManyToManyField('AuctionListing', blank=True, related_name="users")
 
@@ -45,6 +47,11 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_comments")
     listing = models.ForeignKey(AuctionListing, on_delete=models.CASCADE, related_name="al_comments")
     content = models.TextField()
+    time = models.DateTimeField(default=timezone.now())
+
+    def save(self, *args, **kwargs):
+        self.time = timezone.now()
+        return super(Comment, self).save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.id}: {self.user.username} commented on {self.listing.title} auction"

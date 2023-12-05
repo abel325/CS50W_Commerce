@@ -113,7 +113,7 @@
                     <div class="comment">
                         <div class="comment-header">
                             <div class="comment-user">{{ comment.user.username }}</div>
-                            {% comment %} <div class="comment-time">{{ comment.time }}</div> {% endcomment %}
+                            <div class="comment-time">{{ comment.time }} UTC</div>
                         </div>
                         <div class="comment-body">{{ comment.content }}</div>
                         {% if comment.user == user and listing.active %}
