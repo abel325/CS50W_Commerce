@@ -8,7 +8,24 @@
 
     <form action="{% url 'new_listing' %}" method="post" id="new-listing-form" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form }}
+        {{ form.title.label }}
+        {{ form.title }}
+        {{ form.description.label }}
+        {{ form.description }}
+        {{ form.categories.label }}
+        {{ form.categories }}
+        <div id="bid-container">
+            <div id="bid-input">
+                {{ form.starting_bid.label }}
+                {{ form.starting_bid }}
+            </div>
+            <div id="curr-input">
+                {{ form.currency.label }}
+                {{ form.currency }}
+            </div>
+        </div>
+        {{ form.image.label }}
+        {{ form.image }}
         <input type="submit" value="Submit" id="submit-btn">
     </form>
 

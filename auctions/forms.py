@@ -1,5 +1,5 @@
 from django import forms
-from .models import AuctionCategory
+from .models import AuctionCategory, Currency
 
 class NewListingForm(forms.Form):
     title = forms.CharField(
@@ -9,14 +9,17 @@ class NewListingForm(forms.Form):
         widget=forms.TextInput(attrs={
             'id': 'title',
             'name': 'title'
-        }))
+        })
+    )
     
     description = forms.CharField(
         required=False,
         label="Description", 
         widget=forms.Textarea(attrs={
-            'id': 'description', 'name': 'description'
-        }))
+            'id': 'description',
+            'name': 'description'
+        })
+    )
 
     categories = forms.ModelChoiceField(
         required=False,
@@ -25,7 +28,19 @@ class NewListingForm(forms.Form):
         widget=forms.Select(attrs={
             'id': 'category',
             'name': 'category'
-        }))
+        })
+    )
+    
+    currency = forms.ModelChoiceField(
+        required=True,
+        queryset = Currency.objects.all(),
+        label="Currency*",
+        initial=Currency.objects.get(symbol="$"),
+        widget=forms.Select(attrs={
+            'id': 'currency',
+            'name': 'currency'
+        })
+    )
 
     starting_bid = forms.FloatField(
         required=True,
@@ -33,7 +48,8 @@ class NewListingForm(forms.Form):
         widget=forms.NumberInput(attrs={
             'id': 'starting-bid',
             'name': 'starting-bid'
-        }))
+        })
+    )
 
     image = forms.ImageField(
         required=False,
@@ -41,7 +57,8 @@ class NewListingForm(forms.Form):
         widget=forms.FileInput(attrs={
             'id': 'image',
             'name': 'image'
-        }))
+        })
+    )
 
 
 
@@ -49,6 +66,11 @@ class AddCommentForm(forms.Form):
     comment = forms.CharField(
         required=True,
         widget=forms.Textarea(attrs={
-            'id': 'comment', 'name': 'comment', 'placeholder': 'Add a comment...', 'cols': '50', 'rows': '1'
-        }))
+            'id': 'comment',
+            'name': 'comment', 
+            'placeholder': 'Add a comment...', 
+            'cols': '50', 
+            'rows': '1'
+        })
+    )
 

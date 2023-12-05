@@ -2,6 +2,8 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 import os
 
+from django.utils import timezone
+
 class User(AbstractUser):
     # watchlist = models.ManyToManyField('AuctionListing', blank=True, related_name="users")
 
@@ -19,11 +21,13 @@ class AuctionListing(models.Model):
     bid = models.FloatField()
     active = models.BooleanField(default=True)
     winner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="won_listings")
+    currency = models.ForeignKey('Currency', on_delete=models.SET_NULL, null=True, related_name="cu_listings")
 
     
     def delete(self, *Args, **kwargs):
-        if os.path.isfile(self.image.path):
-            os.remove(self.image.path)
+        if self.image:
+            if os.path.isfile(self.image.path):
+                os.remove(self.image.path)
 
         super(AuctionListing, self).delete(*Args, **kwargs)
 
@@ -44,6 +48,11 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_comments")
     listing = models.ForeignKey(AuctionListing, on_delete=models.CASCADE, related_name="al_comments")
     content = models.TextField()
+    time = models.DateTimeField(default="lost in time")
+
+    def save(self, *args, **kwargs):
+        self.time = timezone.now()
+        return super(Comment, self).save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.id}: {self.user.username} commented on {self.listing.title} auction"
@@ -53,4 +62,11 @@ class AuctionCategory(models.Model):
     
     def __str__(self):
         return f"{self.id}: {self.name}"
-        
+    
+
+class Currency(models.Model):
+    name = models.CharField(max_length=64)
+    symbol = models.CharField(max_length=8)
+
+    def __str__(self):
+        return f"{self.id}: {self.name} ({self.symbol})"

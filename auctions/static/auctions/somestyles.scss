@@ -163,6 +163,21 @@ ul.navbar-nav {
 
                 .go-to-listing {
                     margin-left: auto;
+                    
+                    padding: 5px 8px;
+
+                    border: none;
+                    border-radius: $secondary-border-radius;
+
+                    background-color: #4285f4;
+                    color: #fff;
+
+                    text-decoration: none;
+
+                    &:hover {
+                        background-color: #1971ff;
+                    }
+                    
                 }
             }
         }
@@ -252,17 +267,45 @@ ul.navbar-nav {
 
         background-color: white;
 
-        padding: 5px 6px;
+        padding: 4px 6px;
     }
 
-    #starting-bid {
-        max-width: 200px;
+    #bid-container {
+        display: flex;
 
-        border: 1px solid rgba(0, 0, 0, 0.4);
-        border-radius: 6px;
-        outline: none;
+        #bid-input {
+            display: flex;
+            flex-direction: column;
 
-        padding: 3px 6px;
+            max-width: 200px;
+
+            #starting-bid {
+                width: 100%;
+        
+                border: 1px solid rgba(0, 0, 0, 0.4);
+                border-radius: 6px;
+                outline: none;
+        
+                padding: 3px 6px;
+            }
+        }
+
+        #curr-input {
+            display: flex;
+            flex-direction: column;
+            margin-left: 10px;
+
+            #currency {
+                width: 100px;
+
+                border: 1px solid rgba(0, 0, 0, 0.4);
+                border-radius: 6px;
+        
+                background-color: white;
+        
+                padding: 4px 6px;
+            }
+        }
     }
 
     #submit-btn {
@@ -293,13 +336,6 @@ ul.navbar-nav {
     border-top: none;
     border-bottom: none;
 
-    #closed-listing {
-        display: block;
-        width: 60%;
-
-        margin: 0 auto;
-    }
-
     #listing {
         display: flex;
         flex-direction: column; 
@@ -324,6 +360,14 @@ ul.navbar-nav {
 
             background-color: #ea4335;    
             color: #fff;
+
+            a {
+                color: #fff;
+
+                &:hover {
+                    color: #ddd;
+                }
+            }
         }
 
         #image-box {
@@ -355,10 +399,25 @@ ul.navbar-nav {
                     align-self: center;
                 }
 
-                #price {
-                    font-size: 1.6em;
-                    font-weight: bold;
+                #price-ctn {
+                    position: relative;
+
+                    #price {
+                        font-size: 1.6em;
+                        font-weight: bold;
+                    }
+
+                    #last-bid {
+                        position: absolute;
+                        right: 0;
+
+                        white-space: nowrap;
+
+                        font-size: 0.8em;
+                    }
                 }
+
+                
             }
 
             #info-bottom {
@@ -518,7 +577,7 @@ ul.navbar-nav {
                 .delete-comment-form {
                     display: flex;
                     justify-content: flex-end;
-                    margin-top: 5px;
+                    margin: 5px;
 
                     .delete-comment-btn {
                         padding: 5px 8px;
@@ -539,7 +598,28 @@ ul.navbar-nav {
 
     }
 
-    
 }
 
+
+#login-form-container, #register-form-container {
+    max-width: 700px;
+    margin: 0 auto;
+
+    .title {
+        text-align: center;
+    }
+
+    #login-form, #register-form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        width: 100%;
+
+        .btn {
+            max-width: 150px;
+        }
+    }
+}
+    
 
