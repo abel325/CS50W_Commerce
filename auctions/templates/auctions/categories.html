@@ -20,11 +20,7 @@
                 <div class="info">
                     <div class="info-top">
                         <div class="byuser"><strong>by</strong> {{ listing.user.username }}</div>
-                        <div class="price">
-                            {% with listing.currency.symbol|add:listing.bid as total %}
-                                {{ total }}
-                            {% endwith %}
-                        </div>
+                        <div class="price"> {{ listing.currency.symbol }}{{ listing.bid }} </div>
                     </div>
                     <div class="info-bottom">
                         <div class="title">{{ listing.title }}</div>
